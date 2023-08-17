@@ -115,4 +115,4 @@ async def chat(ctx):
 			await ctx.send(f'Vui lòng đợi admin thêm câu trả lời.')
 
 
-bot.run('MTE0MTUyOTU0NjkzMjM2MzMzNQ.Gjc0oD.xhhI8j1E1k6uvKwuQlynHACQ38z6-NN_U0D5jA')
+bot.run('MTE0MTUyOTU0NjkzMjM2MzMzNQ.GN7-Ya._AJdcRbJyEbzWofSvtWwH01LJUnQKCH1t0NaDU')

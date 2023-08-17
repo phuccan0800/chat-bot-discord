@@ -80,8 +80,12 @@ async def dequeue_message(ctx):
 
 @bot.command(name='push')
 async def push_message(ctx, *, message):
-	stack.push(message)
-	await ctx.send(f'Message "{message}" has been pushed to the stack.')
+	if len(message) > 255:
+		await ctx.send("Câu hỏi quá dài. Vui lòng nhập câu hỏi ngắn hơn.")
+		return
+	else:
+		stack.push(message)
+		await ctx.send(f'Message "{message}" has been pushed to the stack.')
 
 
 @bot.command(name='pop')
@@ -103,8 +107,11 @@ async def chat(ctx):
 	user_message = ctx.message.content.replace("/chat", "").strip()
 	user_questions = user_message.split("?")
 	for question in user_questions:
-		if question.strip():
+		if question.strip() and len(question) <= 255:
 			stack.push(question.strip())
+		elif len(question) > 255:
+			await ctx.send("Câu hỏi quá dài. Vui lòng nhập câu hỏi ngắn hơn.")
+			break
 	
 	while not stack.is_empty():
 		if not queue.is_empty():
@@ -116,4 +123,3 @@ async def chat(ctx):
 
 
 bot.run('BOT_TOKEN')
-
